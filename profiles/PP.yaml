@@ -1,0 +1,845 @@
+proxy-providers:
+  PP1:
+    type: file
+    path: "./proxy_provider/PP/PP1.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  PP2:
+    type: file
+    path: "./proxy_provider/PP/PP2.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  PP3:
+    type: file
+    path: "./proxy_provider/PP/PP3.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  PP4:
+    type: file
+    path: "./proxy_provider/PP/PP4.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  PP5:
+    type: file
+    path: "./proxy_provider/PP/PP5.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  PP6:
+    type: file
+    path: "./proxy_provider/PP/PP6.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  PP7:
+    type: file
+    path: "./proxy_provider/PP/PP7.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+  PP8:
+    type: file
+    path: "./proxy_provider/PP/PP8.yaml"
+    health-check:
+      enable: true
+      url: http://cp.cloudflare.com/generate_204
+      interval: 300
+
+proxy-groups:
+- name: PP1
+  type: select
+  disable-udp: false
+  use:
+  - PP1
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+
+- name: PP2
+  type: select
+  disable-udp: false
+  use:
+  - PP2
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+  
+- name: PP3
+  type: select
+  disable-udp: false
+  use:
+  - PP3
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+
+- name: PP4
+  type: select
+  disable-udp: false
+  use:
+  - PP4
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+  
+- name: PP5
+  type: select
+  disable-udp: false
+  use:
+  - PP5
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+
+- name: PP6
+  type: select
+  disable-udp: false
+  use:
+  - PP6
+  url: 'http://1.1.1.1'
+  interval: '300'
+
+- name: PP7
+  type: select
+  disable-udp: false
+  use:
+  - PP7
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+
+- name: PP8
+  type: select
+  disable-udp: false
+  use:
+  - PP8
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+#================================#
+- name: Relay Proxy PP1 > PP2
+  type: select
+  disable-udp: false
+  proxies:
+  - PP1
+  - PP2
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+#================================#
+- name: MACVLAN
+  type: select
+  disable-udp: false
+  proxies:
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - Relay Proxy PP1 > PP2
+  - REJECT
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+- name: ETH1
+  type: select
+  disable-udp: false
+  proxies:
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - Relay Proxy PP1 > PP2
+  - REJECT
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+- name: ETH2
+  type: select
+  disable-udp: false
+  proxies:
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - Relay Proxy PP1 > PP2
+  - REJECT
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+- name: ETH3
+  type: select
+  disable-udp: false
+  proxies:
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - Relay Proxy PP1 > PP2
+  - REJECT
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+#================================#
+- name: LB MACVLAN & ETH1 & ETH2 & ETH3
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  proxies:
+  - MACVLAN
+  - ETH1
+  - ETH2
+  - ETH3
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+#================================#
+- name: UMUM 🌐
+  type: select
+  disable-udp: false
+  proxies:
+  - LB MACVLAN & ETH1 & ETH2 & ETH3
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - MACVLAN
+  - ETH1
+  - ETH2
+  - ETH3
+  - Relay Proxy PP1 > PP2
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+#================================#
+- name: Games 🎮
+  type: select
+  disable-udp: false
+  proxies:
+  - UMUM 🌐
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - MACVLAN
+  - ETH1
+  - ETH2
+  - ETH3
+  - Relay Proxy PP1 > PP2
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+#================================#
+- name: Sosmed 🔔
+  type: select
+  disable-udp: false
+  proxies:
+  - UMUM 🌐
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - MACVLAN
+  - ETH1
+  - ETH2
+  - ETH3
+  - Relay Proxy PP1 > PP2
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+#================================#
+- name: Streaming 🎬
+  type: select
+  disable-udp: false
+  proxies:
+  - UMUM 🌐
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - MACVLAN
+  - ETH1
+  - ETH2
+  - ETH3
+  - Relay Proxy PP1 > PP2
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+  
+- name: Youtube
+  type: select
+  disable-udp: false
+  proxies:
+  - UMUM 🌐
+  - REJECT
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+#================================#
+- name: Online Shop 🛒
+  type: select
+  disable-udp: false
+  proxies:
+  - UMUM 🌐
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - MACVLAN
+  - ETH1
+  - ETH2
+  - ETH3
+  - Relay Proxy PP1 > PP2
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+#================================#
+- name: MBanking 💲
+  type: select
+  disable-udp: false
+  proxies:
+  - UMUM 🌐
+  - PP1
+  - PP2
+  - PP3
+  - PP4
+  - PP5
+  - PP6
+  - PP7
+  - PP8
+  - Ping PP1
+  - Ping PP2
+  - Ping PP3
+  - Ping PP4 
+  - Ping PP5
+  - Ping PP6
+  - Ping PP7
+  - Ping PP8
+  - Fallback PP1
+  - Fallback PP2
+  - Fallback PP3
+  - Fallback PP4
+  - Fallback PP5
+  - Fallback PP6
+  - Fallback PP7
+  - Fallback PP8
+  - LB PP1
+  - LB PP2
+  - LB PP3
+  - LB PP4
+  - LB PP5
+  - LB PP6
+  - LB PP7
+  - LB PP8
+  - MACVLAN
+  - ETH1
+  - ETH2
+  - ETH3
+  - Relay Proxy PP1 > PP2
+  - DIRECT
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+#================================#
+- name: Ping PP1
+  type: url-test
+  disable-udp: false
+  use:
+  - PP1
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+  tolerance: '50'
+- name: Ping PP2
+  type: url-test
+  disable-udp: false
+  use:
+  - PP2
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+  tolerance: '50'
+- name: Ping PP3
+  type: url-test
+  disable-udp: false
+  use:
+  - PP3
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+  tolerance: '50'
+- name: Ping PP4
+  type: url-test
+  disable-udp: false
+  use:
+  - PP4
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+  tolerance: '50'
+- name: Ping PP5
+  type: url-test
+  disable-udp: false
+  use:
+  - PP5
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+  tolerance: '50'
+- name: Ping PP6
+  type: url-test
+  disable-udp: false
+  use:
+  - PP6
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+  tolerance: '50'
+- name: Ping PP7
+  type: url-test
+  disable-udp: false
+  use:
+  - PP7
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+  tolerance: '50'
+- name: Ping PP8
+  type: url-test
+  disable-udp: false
+  use:
+  - PP8
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+  tolerance: '50'
+#================================#
+- name: Fallback PP1
+  type: fallback
+  disable-udp: false
+  use:
+  - PP1
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: Fallback PP2
+  type: fallback
+  disable-udp: false
+  use:
+  - PP2
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: Fallback PP3
+  type: fallback
+  disable-udp: false
+  use:
+  - PP3
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: Fallback PP4
+  type: fallback
+  disable-udp: false
+  use:
+  - PP4
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: Fallback PP5
+  type: fallback
+  disable-udp: false
+  use:
+  - PP5
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: Fallback PP6
+  type: fallback
+  disable-udp: false
+  use:
+  - PP6
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: Fallback PP7
+  type: fallback
+  disable-udp: false
+  use:
+  - PP7
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: Fallback PP8
+  type: fallback
+  disable-udp: false
+  use:
+  - PP8
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+#================================#
+- name: LB PP1
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - PP1
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: LB PP2
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - PP2
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: LB PP3
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - PP3
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: LB PP4
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - PP4
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: LB PP5
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - PP5
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: LB PP6
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - PP6
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: LB PP7
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - PP7
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+- name: LB PP8
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - PP8
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '30'
+#================================#
+- name: BLOCK ADS
+  type: select
+  disable-udp: false
+  proxies:
+  - REJECT
+  - UMUM 🌐
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+- name: Nsfw
+  type: select
+  disable-udp: false
+  proxies:
+  - REJECT
+  - UMUM 🌐
+  url: 'http://cp.cloudflare.com/generate_204'
+  interval: '300'
+
+#================================#
+rule-providers:
+  nsfw:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule_pp/oisd_nsfw_small_abp.yaml"
+  BlockAds:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule_pp/oisd_small_abp.yaml"
+  Game:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule_pp/rules-game.yaml"
+  Sosmed:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule_pp/rules-sosmed.yaml"
+  Stream:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule_pp/rules-stream.yaml"
+  Olshop:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule_pp/rules-olshop.yaml"
+  Bank:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule_pp/rules-bank.yaml"
+  Youtube:
+    type: file
+    behavior: classical
+    path: "./rule_provider/rule_pp/rules-youtube.yaml"
+
+#================================#
+rules:
+- RULE-SET,BlockAds,BLOCK ADS
+- RULE-SET,nsfw,Nsfw
+- RULE-SET,Youtube,Youtube
+- RULE-SET,Game,Games 🎮
+- RULE-SET,Sosmed,Sosmed 🔔
+- RULE-SET,Stream,Streaming 🎬
+- RULE-SET,Olshop,Online Shop 🛒
+- RULE-SET,Bank,MBanking 💲
+- MATCH,UMUM 🌐

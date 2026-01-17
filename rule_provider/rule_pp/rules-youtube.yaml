@@ -1,0 +1,6 @@
+payload: 
+  # > YOUTUBE
+  - DOMAIN-KEYWORD,googlevideo
+  - DOMAIN-KEYWORD,youtube
+  - DOMAIN-KEYWORD,ytimg
+  - DOMAIN-KEYWORD,ytstatic
